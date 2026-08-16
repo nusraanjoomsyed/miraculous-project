@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Ziggy | Let's Ride!</title>
+
+    <style>
+
+        /* =========================
+           BASIC RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: #ffffff;
+
+            overflow-x: hidden;
+
+            background:
+
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(255,255,255,0.20),
+                    transparent 22%
+                ),
+
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(255,255,255,0.16),
+                    transparent 25%
+                ),
+
+                radial-gradient(
+                    circle at 15% 85%,
+                    rgba(255,255,255,0.12),
+                    transparent 23%
+                ),
+
+                radial-gradient(
+                    circle at 90% 85%,
+                    rgba(255,255,255,0.12),
+                    transparent 20%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #000000 0%,
+                    #101010 20%,
+                    #303030 40%,
+                    #686868 55%,
+                    #292929 75%,
+                    #000000 100%
+                );
+
+            background-attachment: fixed;
+        }
+
+
+        /* =========================
+           DARK OVERLAY
+        ========================= */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+
+                radial-gradient(
+                    ellipse at center,
+                    transparent 20%,
+                    rgba(0,0,0,0.68) 100%
+                );
+
+            z-index: 0;
+        }
+
+
+        /* =========================
+           CENTRAL WHITE GLOW
+        ========================= */
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 520px;
+
+            height: 520px;
+
+            border-radius: 50%;
+
+            top: 10%;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    rgba(255,255,255,0.18),
+                    rgba(220,220,220,0.06),
+                    transparent 70%
+                );
+
+            filter: blur(40px);
+
+            pointer-events: none;
+
+            animation:
+                backgroundGlow 5s ease-in-out infinite;
+
+            z-index: 0;
+        }
+
+
+        @keyframes backgroundGlow {
+
+            0%,
+            100% {
+
+                opacity: 0.5;
+
+                transform:
+                    translateX(-50%)
+                    scale(1);
+            }
+
+            50% {
+
+                opacity: 1;
+
+                transform:
+                    translateX(-50%)
+                    scale(1.2);
+            }
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+
+            min-height: 100vh;
+
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 45px 20px;
+
+            position: relative;
+
+            z-index: 1;
+
+            perspective: 1200px;
+        }
+
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        h1 {
+
+            font-size:
+                clamp(50px, 8vw, 95px);
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+
+            letter-spacing: 6px;
+
+            color: #ffffff;
+
+            -webkit-text-stroke: 3px #050505;
+
+            text-shadow:
+
+                3px 4px 0 #555555,
+
+                0 0 8px #ffffff,
+
+                0 0 20px #dddddd,
+
+                0 0 40px rgba(255,255,255,0.75),
+
+                0 0 65px rgba(255,255,255,0.35);
+
+            margin-bottom: 5px;
+
+            text-align: center;
+
+            animation:
+                titleShine 3s ease-in-out infinite;
+        }
+
+
+        @keyframes titleShine {
+
+            0%,
+            100% {
+                filter: brightness(1);
+            }
+
+            50% {
+                filter: brightness(1.4);
+            }
+        }
+
+
+        /* =========================
+           SUBTITLE
+        ========================= */
+
+        .subtitle {
+
+            font-size:
+                clamp(16px, 3vw, 22px);
+
+            color: #dddddd;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            text-shadow:
+
+                0 0 6px #ffffff,
+
+                0 0 12px #888888;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           CATCHPHRASE
+        ========================= */
+
+        .pounce {
+
+            font-size:
+                clamp(32px, 5vw, 58px);
+
+            font-weight: 900;
+
+            font-style: italic;
+
+            text-transform: uppercase;
+
+            letter-spacing: 3px;
+
+            color: #ffffff;
+
+            -webkit-text-stroke: 2px #000000;
+
+            text-shadow:
+
+                2px 3px 0 #333333,
+
+                0 0 8px #ffffff,
+
+                0 0 18px #eeeeee,
+
+                0 0 35px #999999,
+
+                0 0 60px rgba(255,255,255,0.8);
+
+            margin-bottom: 30px;
+
+            transform: rotate(-2deg);
+
+            text-align: center;
+
+            animation:
+                ziggyGlow 2s ease-in-out infinite;
+        }
+
+
+        @keyframes ziggyGlow {
+
+            0%,
+            100% {
+
+                transform:
+                    rotate(-2deg)
+                    scale(1);
+
+                filter: brightness(1);
+            }
+
+            50% {
+
+                transform:
+                    rotate(-2deg)
+                    scale(1.06);
+
+                filter: brightness(1.35);
+            }
+        }
+
+
+        /* =========================
+           MAIN CARD
+        ========================= */
+
+        .ziggy-card {
+
+            position: relative;
+
+            width:
+                min(900px, 94vw);
+
+            min-height: 520px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-around;
+
+            gap: 30px;
+
+            padding: 45px;
+
+            border-radius: 40px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #ffffff 0%,
+                    #e4e4e4 18%,
+                    #a0a0a0 40%,
+                    #5c5c5c 62%,
+                    #292929 82%,
+                    #080808 100%
+                );
+
+            border: 3px solid #ffffff;
+
+            box-shadow:
+
+                0 20px 45px
+                rgba(0,0,0,0.85),
+
+                0 0 20px
+                rgba(255,255,255,0.85),
+
+                0 0 50px
+                rgba(255,255,255,0.45),
+
+                0 0 100px
+                rgba(255,255,255,0.20),
+
+                inset 5px 5px 20px
+                rgba(255,255,255,0.9),
+
+                inset -10px -10px 25px
+                rgba(0,0,0,0.65);
+
+            transform-style: preserve-3d;
+
+            transition: 0.5s ease;
+
+            overflow: hidden;
+
+            animation:
+                cardGlow 4s ease-in-out infinite;
+        }
+
+
+        /* =========================
+           CARD GLOW
+        ========================= */
+
+        @keyframes cardGlow {
+
+            0%,
+            100% {
+
+                box-shadow:
+
+                    0 20px 45px
+                    rgba(0,0,0,0.85),
+
+                    0 0 20px
+                    rgba(255,255,255,0.7),
+
+                    0 0 50px
+                    rgba(255,255,255,0.4),
+
+                    0 0 100px
+                    rgba(255,255,255,0.15),
+
+                    inset 5px 5px 20px
+                    rgba(255,255,255,0.9);
+            }
+
+            50% {
+
+                box-shadow:
+
+                    0 25px 55px
+                    rgba(0,0,0,0.95),
+
+                    0 0 30px
+                    #ffffff,
+
+                    0 0 70px
+                    rgba(255,255,255,0.75),
+
+                    0 0 120px
+                    rgba(255,255,255,0.3),
+
+                    inset 5px 5px 25px
+                    rgba(255,255,255,1);
+            }
+        }
+
+
+        /* =========================
+           CARD HOVER
+        ========================= */
+
+        .ziggy-card:hover {
+
+            transform:
+
+                rotateX(3deg)
+                rotateY(-4deg)
+                translateY(-10px)
+                scale(1.01);
+
+            box-shadow:
+
+                0 30px 60px
+                rgba(0,0,0,0.95),
+
+                0 0 35px #ffffff,
+
+                0 0 70px #eeeeee,
+
+                0 0 130px
+                rgba(255,255,255,0.65),
+
+                inset 5px 5px 25px
+                rgba(255,255,255,1);
+        }
+
+
+        /* =========================
+           CARD SHINE
+        ========================= */
+
+        .ziggy-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 150%;
+
+            height: 80px;
+
+            left: -25%;
+
+            top: 45%;
+
+            background:
+                rgba(255,255,255,0.30);
+
+            transform:
+                rotate(-25deg);
+
+            filter: blur(18px);
+
+            pointer-events: none;
+
+            animation:
+                cardShine 5s ease-in-out infinite;
+        }
+
+
+        @keyframes cardShine {
+
+            0% {
+
+                transform:
+                    translateX(-70%)
+                    rotate(-25deg);
+            }
+
+            50% {
+
+                transform:
+                    translateX(70%)
+                    rotate(-25deg);
+            }
+
+            100% {
+
+                transform:
+                    translateX(120%)
+                    rotate(-25deg);
+            }
+        }
+
+
+        /* =========================
+           DECORATIVE CIRCLES
+        ========================= */
+
+        .circle {
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    #ffffff 0%,
+                    #eeeeee 35%,
+                    #888888 65%,
+                    #111111 100%
+                );
+
+            opacity: 0.9;
+
+            border: 2px solid #ffffff;
+
+            box-shadow:
+
+                0 0 15px #ffffff,
+
+                0 0 30px #bbbbbb,
+
+                0 0 45px rgba(255,255,255,0.5),
+
+                inset 5px 5px 15px
+                rgba(255,255,255,0.9);
+
+            pointer-events: none;
+        }
+
+
+        .circle.one {
+
+            width: 190px;
+            height: 190px;
+
+            top: -100px;
+            left: -70px;
+        }
+
+
+        .circle.two {
+
+            width: 150px;
+            height: 150px;
+
+            bottom: -75px;
+            right: 30px;
+        }
+
+
+        .circle.three {
+
+            width: 90px;
+            height: 90px;
+
+            top: 35px;
+            right: 70px;
+        }
+
+
+        .circle.four {
+
+            width: 55px;
+            height: 55px;
+
+            bottom: 80px;
+            left: 45%;
+        }
+
+
+        /* =========================
+           ZIGGY IMAGE AREA
+        ========================= */
+
+        .ziggy-image {
+
+            position: relative;
+
+            width: 48%;
+
+            min-height: 400px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            transform-style: preserve-3d;
+
+            z-index: 3;
+        }
+
+
+        /* =========================
+           IMAGE GLOW
+        ========================= */
+
+        .ziggy-image::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+
+            height: 320px;
+
+            border-radius: 50%;
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    #ffffff 0%,
+                    #eeeeee 30%,
+                    #aaaaaa 58%,
+                    #333333 100%
+                );
+
+            border: 3px solid #ffffff;
+
+            box-shadow:
+
+                0 0 15px #ffffff,
+
+                0 0 35px #dddddd,
+
+                0 0 70px #888888,
+
+                0 0 110px
+                rgba(255,255,255,0.65),
+
+                inset 10px 10px 25px
+                rgba(255,255,255,0.95);
+        }
+
+
+        /* =========================
+           ZIGGY IMAGE
+        ========================= */
+
+        .ziggy-image img {
+
+            position: relative;
+
+            width: 350px;
+
+            height: 350px;
+
+            object-fit: contain;
+
+            z-index: 4;
+
+            transform:
+                translateZ(55px);
+
+            filter:
+
+                drop-shadow(
+                    15px 20px 12px
+                    rgba(0,0,0,0.75)
+                )
+
+                drop-shadow(
+                    0 0 12px #ffffff
+                )
+
+                drop-shadow(
+                    0 0 30px #dddddd
+                )
+
+                drop-shadow(
+                    0 0 55px
+                    rgba(255,255,255,0.85)
+                );
+
+            animation:
+                ziggyFloat 3s ease-in-out infinite;
+
+            transition: 0.4s ease;
+        }
+
+
+        /* =========================
+           IMAGE HOVER
+        ========================= */
+
+        .ziggy-card:hover
+        .ziggy-image img {
+
+            transform:
+
+                translateZ(75px)
+                scale(1.08);
+
+            filter:
+
+                drop-shadow(
+                    18px 25px 12px
+                    rgba(0,0,0,0.85)
+                )
+
+                drop-shadow(
+                    0 0 15px #ffffff
+                )
+
+                drop-shadow(
+                    0 0 35px #ffffff
+                )
+
+                drop-shadow(
+                    0 0 70px
+                    rgba(255,255,255,1)
+                );
+        }
+
+
+        /* =========================
+           FLOATING ANIMATION
+        ========================= */
+
+        @keyframes ziggyFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateZ(55px)
+                    translateY(0);
+            }
+
+            50% {
+
+                transform:
+                    translateZ(75px)
+                    translateY(-14px);
+            }
+        }
+
+
+        /* =========================
+           INFORMATION
+        ========================= */
+
+        .info {
+
+            width: 45%;
+
+            position: relative;
+
+            z-index: 5;
+
+            transform:
+                translateZ(45px);
+
+            padding: 20px;
+        }
+
+
+        .info h2 {
+
+            font-size:
+                clamp(38px, 5vw, 55px);
+
+            color: #ffffff;
+
+            -webkit-text-stroke: 2px #111111;
+
+            text-shadow:
+
+                2px 3px 0 #555555,
+
+                0 0 12px #ffffff,
+
+                0 0 25px #dddddd,
+
+                0 0 45px #888888;
+
+            margin-bottom: 18px;
+        }
+
+
+        .info p {
+
+            font-size: 19px;
+
+            line-height: 1.7;
+
+            color: #eeeeee;
+
+            font-weight: 700;
+
+            text-shadow:
+                1px 1px 3px #000000;
+        }
+
+
+        /* =========================
+           POWER BOX
+        ========================= */
+
+        .power {
+
+            margin-top: 25px;
+
+            padding: 18px 20px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.98),
+                    rgba(190,190,190,0.94),
+                    rgba(55,55,55,0.96)
+                );
+
+            border: 2px solid #ffffff;
+
+            border-left: 7px solid #222222;
+
+            border-radius: 12px;
+
+            color: #111111;
+
+            font-size: 18px;
+
+            box-shadow:
+
+                0 10px 20px
+                rgba(0,0,0,0.6),
+
+                0 0 20px
+                rgba(255,255,255,0.4);
+        }
+
+
+        .power strong {
+
+            color: #000000;
+
+            font-size: 20px;
+
+            text-shadow:
+                0 0 8px
+                rgba(255,255,255,0.7);
+        }
+
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-btn {
+
+            margin-top: 30px;
+
+            padding: 15px 35px;
+
+            border: 3px solid #ffffff;
+
+            border-radius: 35px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #777777,
+                    #333333,
+                    #050505
+                );
+
+            color: #ffffff;
+
+            font-size: 18px;
+
+            font-weight: 900;
+
+            text-decoration: none;
+
+            box-shadow:
+
+                0 8px 20px
+                rgba(0,0,0,0.75),
+
+                0 0 15px #ffffff,
+
+                0 0 30px
+                rgba(255,255,255,0.45);
+
+            transition: 0.3s ease;
+
+            z-index: 5;
+        }
+
+
+        .back-btn:hover {
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #cccccc
+                );
+
+            color: #111111;
+
+            border-color: #ffffff;
+
+            transform:
+
+                translateY(-6px)
+                scale(1.05);
+
+            box-shadow:
+
+                0 12px 30px
+                rgba(0,0,0,0.7),
+
+                0 0 25px #ffffff,
+
+                0 0 50px #bbbbbb;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            .container {
+
+                padding:
+                    35px 15px;
+            }
+
+
+            h1 {
+
+                font-size: 50px;
+
+                letter-spacing: 3px;
+            }
+
+
+            .pounce {
+
+                font-size: 32px;
+            }
+
+
+            .ziggy-card {
+
+                flex-direction: column;
+
+                padding:
+                    35px 20px;
+
+                min-height: auto;
+
+                gap: 10px;
+            }
+
+
+            .ziggy-image {
+
+                width: 100%;
+
+                min-height: 330px;
+            }
+
+
+            .ziggy-image::before {
+
+                width: 250px;
+
+                height: 250px;
+            }
+
+
+            .ziggy-image img {
+
+                width: 280px;
+
+                height: 280px;
+            }
+
+
+            .info {
+
+                width: 100%;
+
+                text-align: center;
+
+                padding: 10px;
+            }
+
+
+            .info h2 {
+
+                font-size: 40px;
+            }
+
+
+            .info p {
+
+                font-size: 16px;
+            }
+
+
+            .power {
+
+                text-align: left;
+            }
+
+
+            .circle.one {
+
+                width: 120px;
+
+                height: 120px;
+            }
+
+
+            .circle.two {
+
+                width: 100px;
+
+                height: 100px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- =========================
+             TITLE
+        ========================= -->
+
+        <h1>ZIGGY</h1>
+
+
+        <p class="subtitle">
+            The Kwami of Passion
+        </p>
+
+
+        <!-- =========================
+             CATCHPHRASE
+        ========================= -->
+        <h2 class="pounce">
+            LET'S RIDE!
+        </h2>
+        <!-- =========================
+             MAIN CARD
+        ========================= -->
+        <div class="ziggy-card">
+            <!-- =========================
+                 DECORATIVE CIRCLES-->
+            <div class="circle one"></div>
+            <div class="circle two"></div>
+            <div class="circle three"></div>
+            <div class="circle four"></div>
+             
+            <div class="ziggy-image">
+                <img 
+                src="ziggy1.png" alt="Ziggy"
+                >
+        </div>
+        <div class="info">
+            <h2>About Ziggy</h2>
+            <p>
+                Ziggy is the Kwami associated with Goat miraculous.She is creative,
+                energetic and determined,with a strong connection 
+                of imagination and creation.
+            </p>
+            <div class="power">
+                <strong>Power:</strong>
+                <br>
+                Genesis-allows the holder  to create an object from their imagination. 
+                        </div>
+                        </div>
+                        </div>
+                        <a
+                            href="akuma.html"
+                            class="back-btn"
+                            >
+                            ← BACK TO MIRACULOUS
+                        </a>
+                        </div>
+                        </body>
+                        </html>

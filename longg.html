@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Longg | Bring the Storm!</title>
+
+    <style>
+
+        /* =========================
+           BASIC RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: white;
+
+            overflow-x: hidden;
+
+            background:
+
+                radial-gradient(
+                    circle at 8% 15%,
+                    #ff3b30 0 55px,
+                    transparent 56px
+                ),
+
+                radial-gradient(
+                    circle at 90% 12%,
+                    #160000 0 75px,
+                    transparent 76px
+                ),
+
+                radial-gradient(
+                    circle at 15% 85%,
+                    #160000 0 65px,
+                    transparent 66px
+                ),
+
+                radial-gradient(
+                    circle at 85% 85%,
+                    #ffb000 0 50px,
+                    transparent 51px
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #ff5a36 0%,
+                    #d92818 35%,
+                    #7a0900 65%,
+                    #080000 100%
+                );
+
+            background-attachment: fixed;
+        }
+
+
+        /* Dark overlay */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+
+                radial-gradient(
+                    circle at center,
+                    transparent 25%,
+                    rgba(0, 0, 0, 0.35) 100%
+                );
+
+            z-index: 0;
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+
+            min-height: 100vh;
+
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 45px 20px;
+
+            position: relative;
+
+            z-index: 1;
+
+            perspective: 1200px;
+        }
+
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        h1 {
+
+            font-size:
+                clamp(50px, 8vw, 95px);
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+
+            letter-spacing: 6px;
+
+            color: #ffb000;
+
+            -webkit-text-stroke: 3px #080000;
+
+            text-shadow:
+
+                5px 6px 0 #080000,
+
+                0 0 20px
+                rgba(255, 176, 0, 0.8),
+
+                0 0 40px
+                rgba(255, 90, 54, 0.5);
+
+            margin-bottom: 5px;
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           SUBTITLE
+        ========================= */
+
+        .subtitle {
+
+            font-size:
+                clamp(16px, 3vw, 22px);
+
+            color: white;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            text-shadow:
+                2px 3px 4px #080000;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           CATCHPHRASE
+        ========================= */
+
+        .pounce {
+
+            font-size:
+                clamp(32px, 5vw, 58px);
+
+            font-weight: 900;
+
+            font-style: italic;
+
+            text-transform: uppercase;
+
+            letter-spacing: 3px;
+
+            color: #ffb000;
+
+            -webkit-text-stroke: 2px #080000;
+
+            text-shadow:
+
+                4px 4px 0 #080000,
+
+                0 0 15px
+                rgba(255, 176, 0, 0.9),
+
+                0 0 30px
+                rgba(255, 90, 54, 0.6);
+
+            margin-bottom: 30px;
+
+            transform: rotate(-2deg);
+
+            text-align: center;
+
+            animation:
+                dragonGlow 2s ease-in-out infinite;
+        }
+
+
+        @keyframes dragonGlow {
+
+            0%,
+            100% {
+
+                transform:
+                    rotate(-2deg)
+                    scale(1);
+            }
+
+            50% {
+
+                transform:
+                    rotate(-2deg)
+                    scale(1.05);
+            }
+        }
+
+
+        /* =========================
+           MAIN CARD
+        ========================= */
+
+        .wayzz-card {
+
+            position: relative;
+
+            width:
+                min(900px, 94vw);
+
+            min-height: 520px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-around;
+
+            gap: 30px;
+
+            padding: 45px;
+
+            border-radius: 40px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    rgba(255, 91, 54, 0.98),
+                    rgba(185, 28, 18, 0.98) 45%,
+                    rgba(15, 3, 3, 0.98) 100%
+                );
+
+            border: 3px solid #080000;
+
+            box-shadow:
+
+                20px 25px 45px
+                rgba(0, 0, 0, 0.75),
+
+                0 0 35px
+                rgba(255, 75, 35, 0.5),
+
+                inset 5px 5px 15px
+                rgba(255, 220, 180, 0.35),
+
+                inset -8px -8px 15px
+                rgba(0, 0, 0, 0.5);
+
+            transform-style: preserve-3d;
+
+            transition: 0.5s ease;
+
+            overflow: hidden;
+        }
+
+
+        .wayzz-card:hover {
+
+            transform:
+
+                rotateX(3deg)
+                rotateY(-4deg)
+                translateY(-10px);
+
+            box-shadow:
+
+                25px 35px 60px
+                rgba(0, 0, 0, 0.85),
+
+                0 0 45px
+                rgba(255, 75, 35, 0.75),
+
+                inset 5px 5px 15px
+                rgba(255, 220, 180, 0.4);
+        }
+
+
+        /* =========================
+           DECORATIVE CIRCLES
+        ========================= */
+
+        .circle {
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            background: #080000;
+
+            opacity: 0.9;
+
+            box-shadow:
+
+                inset 5px 5px 15px
+                rgba(0, 0, 0, 0.9),
+
+                0 10px 20px
+                rgba(0, 0, 0, 0.5);
+
+            pointer-events: none;
+        }
+
+
+        .circle.one {
+
+            width: 190px;
+            height: 190px;
+
+            top: -100px;
+            left: -70px;
+        }
+
+
+        .circle.two {
+
+            width: 150px;
+            height: 150px;
+
+            bottom: -75px;
+            right: 30px;
+        }
+
+
+        .circle.three {
+
+            width: 90px;
+            height: 90px;
+
+            top: 35px;
+            right: 70px;
+        }
+
+
+        .circle.four {
+
+            width: 55px;
+            height: 55px;
+
+            bottom: 80px;
+            left: 45%;
+        }
+
+
+        /* =========================
+           LONGG IMAGE AREA
+        ========================= */
+
+        .wayzz-image {
+
+            position: relative;
+
+            width: 48%;
+
+            min-height: 400px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            transform-style: preserve-3d;
+
+            z-index: 3;
+        }
+
+
+        /* Dark circle behind Longg */
+
+        .wayzz-image::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+
+            height: 320px;
+
+            border-radius: 50%;
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    #45100a 0%,
+                    #080000 70%
+                );
+
+            border: 3px solid #ffb000;
+
+            box-shadow:
+
+                inset 10px 10px 25px
+                rgba(0, 0, 0, 0.9),
+
+                0 15px 35px
+                rgba(0, 0, 0, 0.7),
+
+                0 0 30px
+                rgba(255, 176, 0, 0.5);
+        }
+
+
+        /* =========================
+           LONGG IMAGE
+        ========================= */
+
+        .wayzz-image img {
+
+            position: relative;
+
+            width: 350px;
+
+            height: 350px;
+
+            object-fit: contain;
+
+            z-index: 4;
+
+            transform:
+                translateZ(55px);
+
+            filter:
+
+                drop-shadow(
+                    15px 20px 12px
+                    rgba(0, 0, 0, 0.7)
+                )
+
+                drop-shadow(
+                    0 0 22px
+                    rgba(255, 176, 0, 0.75)
+                );
+
+            animation:
+                longgFloat 3s ease-in-out infinite;
+
+            transition: 0.4s ease;
+        }
+
+
+        .wayzz-card:hover
+        .wayzz-image img {
+
+            transform:
+
+                translateZ(75px)
+                scale(1.08);
+
+            filter:
+
+                drop-shadow(
+                    18px 25px 12px
+                    rgba(0, 0, 0, 0.75)
+                )
+
+                drop-shadow(
+                    0 0 35px
+                    rgba(255, 176, 0, 0.9)
+                );
+        }
+
+
+        /* =========================
+           FLOATING ANIMATION
+        ========================= */
+
+        @keyframes longgFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateZ(55px)
+                    translateY(0);
+            }
+
+            50% {
+
+                transform:
+                    translateZ(70px)
+                    translateY(-12px);
+            }
+        }
+
+
+        /* =========================
+           INFORMATION
+        ========================= */
+
+        .info {
+
+            width: 45%;
+
+            position: relative;
+
+            z-index: 5;
+
+            transform:
+                translateZ(45px);
+
+            padding: 20px;
+        }
+
+
+        .info h2 {
+
+            font-size:
+                clamp(38px, 5vw, 55px);
+
+            color: #ffb000;
+
+            -webkit-text-stroke: 2px #080000;
+
+            text-shadow:
+
+                4px 5px 0 #080000,
+
+                0 0 15px
+                rgba(255, 176, 0, 0.7);
+
+            margin-bottom: 18px;
+        }
+
+
+        .info p {
+
+            font-size: 19px;
+
+            line-height: 1.7;
+
+            color: white;
+
+            font-weight: 500;
+
+            text-shadow:
+                2px 2px 4px #080000;
+        }
+
+
+        /* =========================
+           POWER BOX
+        ========================= */
+
+        .power {
+
+            margin-top: 25px;
+
+            padding: 18px 20px;
+
+            background:
+                rgba(0, 0, 0, 0.65);
+
+            border: 2px solid #ffb000;
+
+            border-left: 7px solid #ffb000;
+
+            border-radius: 12px;
+
+            color: white;
+
+            font-size: 18px;
+
+            box-shadow:
+                0 10px 20px
+                rgba(0, 0, 0, 0.4);
+        }
+
+
+        .power strong {
+
+            color: #ffb000;
+
+            font-size: 20px;
+        }
+
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-btn {
+
+            margin-top: 30px;
+
+            padding: 15px 35px;
+
+            border: 3px solid #080000;
+
+            border-radius: 35px;
+
+            background: #ffb000;
+
+            color: #080000;
+
+            font-size: 18px;
+
+            font-weight: 900;
+
+            text-decoration: none;
+
+            box-shadow:
+
+                0 8px 20px
+                rgba(0, 0, 0, 0.6),
+
+                0 0 20px
+                rgba(255, 176, 0, 0.5);
+
+            transition: 0.3s ease;
+
+            z-index: 5;
+        }
+
+
+        .back-btn:hover {
+
+            background: #080000;
+
+            color: #ffb000;
+
+            border-color: #ffb000;
+
+            transform:
+
+                translateY(-6px)
+                scale(1.05);
+
+            box-shadow:
+
+                0 12px 30px
+                rgba(0, 0, 0, 0.7),
+
+                0 0 25px
+                rgba(255, 176, 0, 0.7);
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            .container {
+
+                padding:
+                    35px 15px;
+            }
+
+
+            h1 {
+
+                font-size: 50px;
+            }
+
+
+            .pounce {
+
+                font-size: 32px;
+            }
+
+
+            .wayzz-card {
+
+                flex-direction: column;
+
+                padding:
+                    35px 20px;
+
+                min-height: auto;
+
+                gap: 10px;
+            }
+
+
+            .wayzz-image {
+
+                width: 100%;
+
+                min-height: 330px;
+            }
+
+
+            .wayzz-image::before {
+
+                width: 250px;
+
+                height: 250px;
+            }
+
+
+            .wayzz-image img {
+
+                width: 280px;
+
+                height: 280px;
+            }
+
+
+            .info {
+
+                width: 100%;
+
+                text-align: center;
+
+                padding: 10px;
+            }
+
+
+            .info h2 {
+
+                font-size: 40px;
+            }
+
+
+            .info p {
+
+                font-size: 16px;
+            }
+
+
+            .power {
+
+                text-align: left;
+            }
+
+
+            .circle.one {
+
+                width: 120px;
+
+                height: 120px;
+            }
+
+
+            .circle.two {
+
+                width: 100px;
+
+                height: 100px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- TITLE -->
+
+        <h1>LONGG</h1>
+
+
+        <p class="subtitle">
+            The Kwami of Perfection
+        </p>
+
+
+        <!-- CATCHPHRASE -->
+
+        <h2 class="pounce">
+            BRING THE STORM!
+        </h2>
+
+
+        <!-- MAIN CARD -->
+
+        <div class="wayzz-card">
+
+
+            <!-- Decorative circles -->
+
+            <div class="circle one"></div>
+
+            <div class="circle two"></div>
+
+            <div class="circle three"></div>
+
+            <div class="circle four"></div>
+
+
+            <!-- LONGG IMAGE -->
+
+            <div class="wayzz-image">
+
+                <!--
+                    Change longg.png if
+                    your image has another name.
+                -->
+
+                <img
+                    src="longg1.png"
+                    alt="Longg"
+                >
+
+            </div>
+
+
+            <!-- INFORMATION -->
+
+            <div class="info">
+
+                <h2>LONGG</h2>
+
+                <p>
+
+                    Longg is the kwami associated
+                    with the Dragon Miraculous.
+                    Longg represents perfection,
+                    strength and the power of nature.
+
+                </p>
+
+
+                <div class="power">
+
+                    <strong>POWER:</strong>
+
+                    <br>
+
+                    Elemental Powers — gives the
+                    holder the ability to transform
+                    into wind, water and lightning.
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- BACK BUTTON -->
+
+        <a
+            href="akuma.html"
+            class="back-btn"
+        >
+            ← BACK TO MIRACULOUS
+        </a>
+
+
+    </div>
+
+
+</body>
+
+</html>

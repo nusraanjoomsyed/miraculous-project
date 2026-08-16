@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Kaalki | Longg On!</title>
+
+    <style>
+
+        /* =========================
+           BASIC RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: #ffffff;
+
+            overflow-x: hidden;
+
+            background:
+
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(196, 118, 255, 0.55),
+                    transparent 22%
+                ),
+
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(116, 46, 205, 0.65),
+                    transparent 25%
+                ),
+
+                radial-gradient(
+                    circle at 15% 85%,
+                    rgba(151, 64, 255, 0.45),
+                    transparent 23%
+                ),
+
+                radial-gradient(
+                    circle at 90% 85%,
+                    rgba(215, 135, 255, 0.45),
+                    transparent 20%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #100022 0%,
+                    #1d0638 25%,
+                    #31095c 50%,
+                    #21043f 75%,
+                    #0b0018 100%
+                );
+
+            background-attachment: fixed;
+        }
+
+
+        /* =========================
+           GLOW OVERLAY
+        ========================= */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+
+                radial-gradient(
+                    ellipse at center,
+                    transparent 30%,
+                    rgba(0, 0, 0, 0.4) 100%
+                );
+
+            z-index: 0;
+        }
+
+
+        /* =========================
+           FLOATING LIGHT
+        ========================= */
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 450px;
+
+            height: 450px;
+
+            border-radius: 50%;
+
+            top: 15%;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    rgba(188, 90, 255, 0.16),
+                    transparent 70%
+                );
+
+            filter: blur(30px);
+
+            pointer-events: none;
+
+            animation: backgroundGlow 5s ease-in-out infinite;
+
+            z-index: 0;
+        }
+
+
+        @keyframes backgroundGlow {
+
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: translateX(-50%) scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.25);
+            }
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+
+            min-height: 100vh;
+
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 45px 20px;
+
+            position: relative;
+
+            z-index: 1;
+
+            perspective: 1200px;
+        }
+
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        h1 {
+
+            font-size:
+                clamp(50px, 8vw, 95px);
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+
+            letter-spacing: 6px;
+
+            color: #c879ff;
+
+            -webkit-text-stroke: 3px #120025;
+
+            text-shadow:
+
+                3px 4px 0 #ffffff,
+
+                0 0 10px #c879ff,
+
+                0 0 25px #a83cff,
+
+                0 0 50px rgba(190, 82, 255, 0.9),
+
+                0 0 80px rgba(155, 45, 255, 0.6);
+
+            margin-bottom: 5px;
+
+            text-align: center;
+
+            animation:
+                titleShine 3s ease-in-out infinite;
+        }
+
+
+        @keyframes titleShine {
+
+            0%,
+            100% {
+                filter: brightness(1);
+            }
+
+            50% {
+                filter: brightness(1.35);
+            }
+        }
+
+
+        /* =========================
+           SUBTITLE
+        ========================= */
+
+        .subtitle {
+
+            font-size:
+                clamp(16px, 3vw, 22px);
+
+            color: #ead8ff;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            text-shadow:
+
+                0 0 8px #a83cff,
+
+                0 0 15px rgba(168, 60, 255, 0.7);
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           LONGG ON
+        ========================= */
+
+        .pounce {
+
+            font-size:
+                clamp(32px, 5vw, 58px);
+
+            font-weight: 900;
+
+            font-style: italic;
+
+            text-transform: uppercase;
+
+            letter-spacing: 3px;
+
+            color: #d18aff;
+
+            -webkit-text-stroke: 2px #160028;
+
+            text-shadow:
+
+                2px 3px 0 #ffffff,
+
+                0 0 8px #ffffff,
+
+                0 0 18px #c45cff,
+
+                0 0 35px #9d2cff,
+
+                0 0 60px rgba(174, 67, 255, 0.9);
+
+            margin-bottom: 30px;
+
+            transform: rotate(-2deg);
+
+            text-align: center;
+
+            animation:
+                longgGlow 2s ease-in-out infinite;
+        }
+
+
+        @keyframes longgGlow {
+
+            0%,
+            100% {
+
+                transform:
+                    rotate(-2deg)
+                    scale(1);
+
+                filter: brightness(1);
+            }
+
+            50% {
+
+                transform:
+                    rotate(-2deg)
+                    scale(1.06);
+
+                filter: brightness(1.3);
+            }
+        }
+
+
+        /* =========================
+           MAIN CARD
+        ========================= */
+
+        .kaalki-card {
+
+            position: relative;
+
+            width:
+                min(900px, 94vw);
+
+            min-height: 520px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-around;
+
+            gap: 30px;
+
+            padding: 45px;
+
+            border-radius: 40px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    rgba(255, 255, 255, 0.98) 0%,
+                    rgba(247, 233, 255, 0.98) 25%,
+                    rgba(190, 121, 255, 0.92) 55%,
+                    rgba(102, 32, 160, 0.95) 80%,
+                    rgba(45, 5, 75, 0.98) 100%
+                );
+
+            border: 3px solid #d18aff;
+
+            box-shadow:
+
+                0 20px 45px
+                rgba(0, 0, 0, 0.55),
+
+                0 0 20px
+                #b43cff,
+
+                0 0 50px
+                rgba(172, 58, 255, 0.8),
+
+                0 0 100px
+                rgba(122, 35, 200, 0.45),
+
+                inset 5px 5px 20px
+                rgba(255, 255, 255, 0.9),
+
+                inset -10px -10px 25px
+                rgba(60, 10, 90, 0.35);
+
+            transform-style: preserve-3d;
+
+            transition: 0.5s ease;
+
+            overflow: hidden;
+
+            animation:
+                cardGlow 4s ease-in-out infinite;
+        }
+
+
+        @keyframes cardGlow {
+
+            0%,
+            100% {
+
+                box-shadow:
+
+                    0 20px 45px
+                    rgba(0, 0, 0, 0.55),
+
+                    0 0 20px #b43cff,
+
+                    0 0 50px
+                    rgba(172, 58, 255, 0.7),
+
+                    0 0 100px
+                    rgba(122, 35, 200, 0.4),
+
+                    inset 5px 5px 20px
+                    rgba(255, 255, 255, 0.9);
+            }
+
+            50% {
+
+                box-shadow:
+
+                    0 25px 50px
+                    rgba(0, 0, 0, 0.6),
+
+                    0 0 30px #d18aff,
+
+                    0 0 70px
+                    rgba(190, 75, 255, 0.95),
+
+                    0 0 120px
+                    rgba(140, 45, 220, 0.6),
+
+                    inset 5px 5px 25px
+                    rgba(255, 255, 255, 1);
+            }
+        }
+
+
+        .kaalki-card:hover {
+
+            transform:
+
+                rotateX(3deg)
+                rotateY(-4deg)
+                translateY(-10px)
+                scale(1.01);
+
+            box-shadow:
+
+                0 30px 60px
+                rgba(0, 0, 0, 0.7),
+
+                0 0 35px #ffffff,
+
+                0 0 70px #c45cff,
+
+                0 0 130px rgba(174, 67, 255, 0.9),
+
+                inset 5px 5px 25px
+                rgba(255, 255, 255, 1);
+        }
+
+
+        /* =========================
+           SHINE ON CARD
+        ========================= */
+
+        .kaalki-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 150%;
+
+            height: 80px;
+
+            left: -25%;
+
+            top: 45%;
+
+            background:
+                rgba(255, 255, 255, 0.18);
+
+            transform:
+                rotate(-25deg);
+
+            filter: blur(18px);
+
+            pointer-events: none;
+
+            animation:
+                cardShine 5s ease-in-out infinite;
+        }
+
+
+        @keyframes cardShine {
+
+            0% {
+                transform:
+                    translateX(-70%)
+                    rotate(-25deg);
+            }
+
+            50% {
+                transform:
+                    translateX(70%)
+                    rotate(-25deg);
+            }
+
+            100% {
+                transform:
+                    translateX(120%)
+                    rotate(-25deg);
+            }
+        }
+
+
+        /* =========================
+           DECORATIVE CIRCLES
+        ========================= */
+
+        .circle {
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    #ffffff 0%,
+                    #e5c8ff 45%,
+                    #a948ff 100%
+                );
+
+            opacity: 0.9;
+
+            border: 2px solid #e2b8ff;
+
+            box-shadow:
+
+                0 0 15px #ffffff,
+
+                0 0 30px #b33cff,
+
+                inset 5px 5px 15px
+                rgba(255, 255, 255, 0.9);
+
+            pointer-events: none;
+        }
+
+
+        .circle.one {
+
+            width: 190px;
+            height: 190px;
+
+            top: -100px;
+            left: -70px;
+        }
+
+
+        .circle.two {
+
+            width: 150px;
+            height: 150px;
+
+            bottom: -75px;
+            right: 30px;
+        }
+
+
+        .circle.three {
+
+            width: 90px;
+            height: 90px;
+
+            top: 35px;
+            right: 70px;
+        }
+
+
+        .circle.four {
+
+            width: 55px;
+            height: 55px;
+
+            bottom: 80px;
+            left: 45%;
+        }
+
+
+        /* =========================
+           KAALKI IMAGE AREA
+        ========================= */
+
+        .kaalki-image {
+
+            position: relative;
+
+            width: 48%;
+
+            min-height: 400px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            transform-style: preserve-3d;
+
+            z-index: 3;
+        }
+
+
+        /* =========================
+           GLOW CIRCLE BEHIND IMAGE
+        ========================= */
+
+        .kaalki-image::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+
+            height: 320px;
+
+            border-radius: 50%;
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    #ffffff 0%,
+                    #f5e8ff 35%,
+                    #d09aff 60%,
+                    #7d24c5 100%
+                );
+
+            border: 3px solid #ffffff;
+
+            box-shadow:
+
+                0 0 15px #ffffff,
+
+                0 0 35px #d06aff,
+
+                0 0 70px #9d2cff,
+
+                0 0 110px
+                rgba(159, 42, 255, 0.7),
+
+                inset 10px 10px 25px
+                rgba(255, 255, 255, 0.95);
+        }
+
+
+        /* =========================
+           KAALKI IMAGE
+        ========================= */
+
+        .kaalki-image img {
+
+            position: relative;
+
+            width: 350px;
+
+            height: 350px;
+
+            object-fit: contain;
+
+            z-index: 4;
+
+            transform:
+                translateZ(55px);
+
+            filter:
+
+                drop-shadow(
+                    15px 20px 12px
+                    rgba(20, 0, 35, 0.45)
+                )
+
+                drop-shadow(
+                    0 0 12px #ffffff
+                )
+
+                drop-shadow(
+                    0 0 30px #c04cff
+                )
+
+                drop-shadow(
+                    0 0 55px
+                    rgba(170, 55, 255, 0.9)
+                );
+
+            animation:
+                kaalkiFloat 3s ease-in-out infinite;
+
+            transition: 0.4s ease;
+        }
+
+
+        .kaalki-card:hover
+        .kaalki-image img {
+
+            transform:
+
+                translateZ(75px)
+                scale(1.08);
+
+            filter:
+
+                drop-shadow(
+                    18px 25px 12px
+                    rgba(20, 0, 35, 0.5)
+                )
+
+                drop-shadow(
+                    0 0 15px #ffffff
+                )
+
+                drop-shadow(
+                    0 0 35px #d66aff
+                )
+
+                drop-shadow(
+                    0 0 70px
+                    rgba(187, 65, 255, 1)
+                );
+        }
+
+
+        /* =========================
+           FLOATING ANIMATION
+        ========================= */
+
+        @keyframes kaalkiFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateZ(55px)
+                    translateY(0);
+            }
+
+            50% {
+
+                transform:
+                    translateZ(75px)
+                    translateY(-14px);
+            }
+        }
+
+
+        /* =========================
+           INFORMATION
+        ========================= */
+
+        .info {
+
+            width: 45%;
+
+            position: relative;
+
+            z-index: 5;
+
+            transform:
+                translateZ(45px);
+
+            padding: 20px;
+        }
+
+
+        .info h2 {
+
+            font-size:
+                clamp(38px, 5vw, 55px);
+
+            color: #b967ff;
+
+            -webkit-text-stroke: 2px #1b0030;
+
+            text-shadow:
+
+                2px 3px 0 #ffffff,
+
+                0 0 12px #ffffff,
+
+                0 0 25px #c34dff,
+
+                0 0 45px #8e27d9;
+
+            margin-bottom: 18px;
+        }
+
+
+        .info p {
+
+            font-size: 19px;
+
+            line-height: 1.7;
+
+            color: #25043f;
+
+            font-weight: 700;
+
+            text-shadow:
+                1px 1px 2px #ffffff;
+        }
+
+
+        /* =========================
+           POWER BOX
+        ========================= */
+
+        .power {
+
+            margin-top: 25px;
+
+            padding: 18px 20px;
+
+            background:
+                rgba(255, 255, 255, 0.92);
+
+            border: 2px solid #b967ff;
+
+            border-left: 7px solid #8d2bd1;
+
+            border-radius: 12px;
+
+            color: #26043f;
+
+            font-size: 18px;
+
+            box-shadow:
+
+                0 10px 20px
+                rgba(20, 0, 35, 0.25),
+
+                0 0 20px
+                rgba(180, 70, 255, 0.4);
+        }
+
+
+        .power strong {
+
+            color: #8d2bd1;
+
+            font-size: 20px;
+
+            text-shadow:
+                0 0 8px
+                rgba(141, 43, 209, 0.5);
+        }
+
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-btn {
+
+            margin-top: 30px;
+
+            padding: 15px 35px;
+
+            border: 3px solid #e0b3ff;
+
+            border-radius: 35px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #b54cff,
+                    #6f19a8
+                );
+
+            color: #ffffff;
+
+            font-size: 18px;
+
+            font-weight: 900;
+
+            text-decoration: none;
+
+            box-shadow:
+
+                0 8px 20px
+                rgba(0, 0, 0, 0.4),
+
+                0 0 20px #b33cff,
+
+                0 0 40px
+                rgba(170, 50, 255, 0.6);
+
+            transition: 0.3s ease;
+
+            z-index: 5;
+        }
+
+
+        .back-btn:hover {
+
+            background:
+                #ffffff;
+
+            color: #8d2bd1;
+
+            border-color: #ffffff;
+
+            transform:
+
+                translateY(-6px)
+                scale(1.05);
+
+            box-shadow:
+
+                0 12px 30px
+                rgba(0, 0, 0, 0.45),
+
+                0 0 25px #ffffff,
+
+                0 0 50px #b33cff;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            .container {
+
+                padding:
+                    35px 15px;
+            }
+
+
+            h1 {
+
+                font-size: 50px;
+
+                letter-spacing: 3px;
+            }
+
+
+            .pounce {
+
+                font-size: 32px;
+            }
+
+
+            .kaalki-card {
+
+                flex-direction: column;
+
+                padding:
+                    35px 20px;
+
+                min-height: auto;
+
+                gap: 10px;
+            }
+
+
+            .kaalki-image {
+
+                width: 100%;
+
+                min-height: 330px;
+            }
+
+
+            .kaalki-image::before {
+
+                width: 250px;
+
+                height: 250px;
+            }
+
+
+            .kaalki-image img {
+
+                width: 280px;
+
+                height: 280px;
+            }
+
+
+            .info {
+
+                width: 100%;
+
+                text-align: center;
+
+                padding: 10px;
+            }
+
+
+            .info h2 {
+
+                font-size: 40px;
+            }
+
+
+            .info p {
+
+                font-size: 16px;
+            }
+
+
+            .power {
+
+                text-align: left;
+            }
+
+
+            .circle.one {
+
+                width: 120px;
+
+                height: 120px;
+            }
+
+
+            .circle.two {
+
+                width: 100px;
+
+                height: 100px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- =========================
+             TITLE
+        ========================= -->
+
+        <h1>K A A L K I</h1>
+
+
+        <p class="subtitle">
+            The Kwami of Migration
+        </p>
+
+
+        <!-- =========================
+             CATCHPHRASE
+        ========================= -->
+
+        <h2 class="pounce">
+            GALLOP ON!
+        </h2>
+
+
+        <!-- =========================
+             MAIN CARD
+        ========================= -->
+
+        <div class="kaalki-card">
+
+
+            <!-- Decorative circles -->
+
+            <div class="circle one"></div>
+
+            <div class="circle two"></div>
+
+            <div class="circle three"></div>
+
+            <div class="circle four"></div>
+
+
+            <!-- =========================
+                 KAALKI IMAGE
+            ========================= -->
+
+            <div class="kaalki-image">
+
+                <!--
+                    Change kaalki.png
+                    to your actual image name.
+                -->
+
+                <img
+                    src="kaalki1.png"
+                    alt="Kaalki"
+                >
+
+            </div>
+
+
+            <!-- INFORMATION -->
+
+            <div class="info">
+
+                <h2>KAALKI</h2>
+
+                <p>
+
+                    Kaalki is the kwami associated
+                    with the horse Miraculous.
+                    She represents intuition,
+                    movement and portals.
+
+                </p>
+
+
+                <div class="power">
+
+                    <strong>POWER:</strong>
+
+                    <br>
+
+                    VOYAGE-creates a portal that allows the holder
+                     to travel through one place to another.
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- BACK BUTTON -->
+
+        <a
+            href="akuma.html"
+            class="back-btn"
+        >
+            ← BACK TO MIRACULOUS
+        </a>
+
+
+    </div>
+
+
+</body>
+
+</html>

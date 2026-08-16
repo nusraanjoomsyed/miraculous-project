@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Roarr | Claws Out!</title>
+
+    <style>
+
+        /* =========================
+           BASIC RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: #ffffff;
+
+            overflow-x: hidden;
+
+            background:
+
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(255,255,255,0.22),
+                    transparent 22%
+                ),
+
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(190,80,255,0.40),
+                    transparent 25%
+                ),
+
+                radial-gradient(
+                    circle at 15% 85%,
+                    rgba(220,120,255,0.25),
+                    transparent 23%
+                ),
+
+                radial-gradient(
+                    circle at 90% 85%,
+                    rgba(100,0,150,0.35),
+                    transparent 20%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #050008 0%,
+                    #19002e 20%,
+                    #52008c 40%,
+                    #a92cff 55%,
+                    #4b007d 75%,
+                    #000000 100%
+                );
+
+            background-attachment: fixed;
+        }
+
+
+        /* =========================
+           DARK OVERLAY
+        ========================= */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+
+                radial-gradient(
+                    ellipse at center,
+                    transparent 20%,
+                    rgba(0,0,0,0.65) 100%
+                );
+
+            z-index: 0;
+        }
+
+
+        /* =========================
+           CENTRAL PURPLE GLOW
+        ========================= */
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 520px;
+
+            height: 520px;
+
+            border-radius: 50%;
+
+            top: 10%;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    rgba(255,220,255,0.30),
+                    rgba(180,0,255,0.15),
+                    transparent 70%
+                );
+
+            filter: blur(40px);
+
+            pointer-events: none;
+
+            animation:
+                backgroundGlow 5s ease-in-out infinite;
+
+            z-index: 0;
+        }
+
+
+        @keyframes backgroundGlow {
+
+            0%,
+            100% {
+
+                opacity: 0.55;
+
+                transform:
+                    translateX(-50%)
+                    scale(1);
+            }
+
+            50% {
+
+                opacity: 1;
+
+                transform:
+                    translateX(-50%)
+                    scale(1.2);
+            }
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+
+            min-height: 100vh;
+
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 45px 20px;
+
+            position: relative;
+
+            z-index: 1;
+
+            perspective: 1200px;
+        }
+
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        h1 {
+
+            font-size:
+                clamp(50px, 8vw, 95px);
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+
+            letter-spacing: 6px;
+
+            color: #ffffff;
+
+            -webkit-text-stroke: 3px #21002f;
+
+            text-shadow:
+
+                3px 4px 0 #7200b8,
+
+                0 0 8px #ffffff,
+
+                0 0 20px #e79cff,
+
+                0 0 40px rgba(190,0,255,0.95),
+
+                0 0 65px rgba(220,100,255,0.65);
+
+            margin-bottom: 5px;
+
+            text-align: center;
+
+            animation:
+                titleShine 3s ease-in-out infinite;
+        }
+
+
+        @keyframes titleShine {
+
+            0%,
+            100% {
+                filter: brightness(1);
+            }
+
+            50% {
+                filter: brightness(1.4);
+            }
+        }
+
+
+        /* =========================
+           SUBTITLE
+        ========================= */
+
+        .subtitle {
+
+            font-size:
+                clamp(16px, 3vw, 22px);
+
+            color: #f8dcff;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            text-shadow:
+
+                0 0 6px #ffffff,
+
+                0 0 12px #b52cff;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           CATCHPHRASE
+        ========================= */
+
+        .pounce {
+
+            font-size:
+                clamp(32px, 5vw, 58px);
+
+            font-weight: 900;
+
+            font-style: italic;
+
+            text-transform: uppercase;
+
+            letter-spacing: 3px;
+
+            color: #ffffff;
+
+            -webkit-text-stroke: 2px #25002f;
+
+            text-shadow:
+
+                2px 3px 0 #7100a8,
+
+                0 0 8px #ffffff,
+
+                0 0 18px #f0b5ff,
+
+                0 0 35px #a900ff,
+
+                0 0 60px rgba(190,0,255,0.95);
+
+            margin-bottom: 30px;
+
+            transform: rotate(-2deg);
+
+            text-align: center;
+
+            animation:
+                roarrGlow 2s ease-in-out infinite;
+        }
+
+
+        @keyframes roarrGlow {
+
+            0%,
+            100% {
+
+                transform:
+                    rotate(-2deg)
+                    scale(1);
+
+                filter: brightness(1);
+            }
+
+            50% {
+
+                transform:
+                    rotate(-2deg)
+                    scale(1.06);
+
+                filter: brightness(1.35);
+            }
+        }
+
+
+        /* =========================
+           MAIN CARD
+        ========================= */
+
+        .roarr-card {
+
+            position: relative;
+
+            width:
+                min(900px, 94vw);
+
+            min-height: 520px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-around;
+
+            gap: 30px;
+
+            padding: 45px;
+
+            border-radius: 40px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #ffffff 0%,
+                    #f7e8ff 18%,
+                    #d35cff 40%,
+                    #7412bd 62%,
+                    #300052 82%,
+                    #010004 100%
+                );
+
+            border: 3px solid #ffffff;
+
+            box-shadow:
+
+                0 20px 45px
+                rgba(10,0,30,0.90),
+
+                0 0 20px
+                rgba(255,255,255,0.95),
+
+                0 0 50px
+                rgba(190,0,255,0.75),
+
+                0 0 100px
+                rgba(140,0,255,0.40),
+
+                inset 5px 5px 20px
+                rgba(255,255,255,0.98),
+
+                inset -10px -10px 25px
+                rgba(30,0,45,0.70);
+
+            transform-style: preserve-3d;
+
+            transition: 0.5s ease;
+
+            overflow: hidden;
+
+            animation:
+                cardGlow 4s ease-in-out infinite;
+        }
+
+
+        /* =========================
+           CARD GLOW
+        ========================= */
+
+        @keyframes cardGlow {
+
+            0%,
+            100% {
+
+                box-shadow:
+
+                    0 20px 45px
+                    rgba(10,0,30,0.90),
+
+                    0 0 20px
+                    rgba(255,255,255,0.75),
+
+                    0 0 50px
+                    rgba(190,0,255,0.65),
+
+                    0 0 100px
+                    rgba(140,0,255,0.28),
+
+                    inset 5px 5px 20px
+                    rgba(255,255,255,0.90);
+            }
+
+            50% {
+
+                box-shadow:
+
+                    0 25px 55px
+                    rgba(5,0,20,0.98),
+
+                    0 0 30px
+                    #ffffff,
+
+                    0 0 70px
+                    rgba(225,100,255,1),
+
+                    0 0 120px
+                    rgba(180,0,255,0.55),
+
+                    inset 5px 5px 25px
+                    rgba(255,255,255,1);
+            }
+        }
+
+
+        /* =========================
+           CARD HOVER
+        ========================= */
+
+        .roarr-card:hover {
+
+            transform:
+
+                rotateX(3deg)
+                rotateY(-4deg)
+                translateY(-10px)
+                scale(1.01);
+
+            box-shadow:
+
+                0 30px 60px
+                rgba(5,0,20,0.98),
+
+                0 0 35px #ffffff,
+
+                0 0 70px #e49cff,
+
+                0 0 130px
+                rgba(190,0,255,0.95),
+
+                inset 5px 5px 25px
+                rgba(255,255,255,1);
+        }
+
+
+        /* =========================
+           CARD SHINE
+        ========================= */
+
+        .roarr-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 150%;
+
+            height: 80px;
+
+            left: -25%;
+
+            top: 45%;
+
+            background:
+                rgba(255,255,255,0.38);
+
+            transform:
+                rotate(-25deg);
+
+            filter: blur(18px);
+
+            pointer-events: none;
+
+            animation:
+                cardShine 5s ease-in-out infinite;
+        }
+
+
+        @keyframes cardShine {
+
+            0% {
+
+                transform:
+                    translateX(-70%)
+                    rotate(-25deg);
+            }
+
+            50% {
+
+                transform:
+                    translateX(70%)
+                    rotate(-25deg);
+            }
+
+            100% {
+
+                transform:
+                    translateX(120%)
+                    rotate(-25deg);
+            }
+        }
+
+
+        /* =========================
+           DECORATIVE CIRCLES
+        ========================= */
+
+        .circle {
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    #ffffff 0%,
+                    #f5e1ff 35%,
+                    #d05cff 65%,
+                    #360052 100%
+                );
+
+            opacity: 0.94;
+
+            border: 2px solid #ffffff;
+
+            box-shadow:
+
+                0 0 15px #ffffff,
+
+                0 0 30px #e08aff,
+
+                0 0 45px rgba(190,0,255,0.75),
+
+                inset 5px 5px 15px
+                rgba(255,255,255,0.98);
+
+            pointer-events: none;
+        }
+
+
+        .circle.one {
+
+            width: 190px;
+            height: 190px;
+
+            top: -100px;
+            left: -70px;
+        }
+
+
+        .circle.two {
+
+            width: 150px;
+            height: 150px;
+
+            bottom: -75px;
+            right: 30px;
+        }
+
+
+        .circle.three {
+
+            width: 90px;
+            height: 90px;
+
+            top: 35px;
+            right: 70px;
+        }
+
+
+        .circle.four {
+
+            width: 55px;
+            height: 55px;
+
+            bottom: 80px;
+            left: 45%;
+        }
+
+
+        /* =========================
+           ROARR IMAGE AREA
+        ========================= */
+
+        .roarr-image {
+
+            position: relative;
+
+            width: 48%;
+
+            min-height: 400px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            transform-style: preserve-3d;
+
+            z-index: 3;
+        }
+
+
+        /* =========================
+           IMAGE GLOW
+        ========================= */
+
+        .roarr-image::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+
+            height: 320px;
+
+            border-radius: 50%;
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    #ffffff 0%,
+                    #f8e8ff 30%,
+                    #d463ff 58%,
+                    #7200b5 100%
+                );
+
+            border: 3px solid #ffffff;
+
+            box-shadow:
+
+                0 0 15px #ffffff,
+
+                0 0 35px #e9a1ff,
+
+                0 0 70px #b000ff,
+
+                0 0 110px
+                rgba(180,0,255,0.85),
+
+                inset 10px 10px 25px
+                rgba(255,255,255,1);
+        }
+
+
+        /* =========================
+           ROARR IMAGE
+        ========================= */
+
+        .roarr-image img {
+
+            position: relative;
+
+            width: 350px;
+
+            height: 350px;
+
+            object-fit: contain;
+
+            z-index: 4;
+
+            transform:
+                translateZ(55px);
+
+            filter:
+
+                drop-shadow(
+                    15px 20px 12px
+                    rgba(10,0,30,0.80)
+                )
+
+                drop-shadow(
+                    0 0 12px #ffffff
+                )
+
+                drop-shadow(
+                    0 0 30px #e09aff
+                )
+
+                drop-shadow(
+                    0 0 55px
+                    rgba(190,0,255,0.98)
+                );
+
+            animation:
+                roarrFloat 3s ease-in-out infinite;
+
+            transition: 0.4s ease;
+        }
+
+
+        /* =========================
+           IMAGE HOVER
+        ========================= */
+
+        .roarr-card:hover
+        .roarr-image img {
+
+            transform:
+
+                translateZ(75px)
+                scale(1.08);
+
+            filter:
+
+                drop-shadow(
+                    18px 25px 12px
+                    rgba(5,0,20,0.90)
+                )
+
+                drop-shadow(
+                    0 0 15px #ffffff
+                )
+
+                drop-shadow(
+                    0 0 35px #f0b5ff
+                )
+
+                drop-shadow(
+                    0 0 70px
+                    rgba(210,0,255,1)
+                );
+        }
+
+
+        /* =========================
+           FLOATING ANIMATION
+        ========================= */
+
+        @keyframes roarrFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateZ(55px)
+                    translateY(0);
+            }
+
+            50% {
+
+                transform:
+                    translateZ(75px)
+                    translateY(-14px);
+            }
+        }
+
+
+        /* =========================
+           INFORMATION
+        ========================= */
+
+        .info {
+
+            width: 45%;
+
+            position: relative;
+
+            z-index: 5;
+
+            transform:
+                translateZ(45px);
+
+            padding: 20px;
+        }
+
+
+        .info h2 {
+
+            font-size:
+                clamp(38px, 5vw, 55px);
+
+            color: #ffffff;
+
+            -webkit-text-stroke: 2px #2a003d;
+
+            text-shadow:
+
+                2px 3px 0 #7200b8,
+
+                0 0 12px #ffffff,
+
+                0 0 25px #e29cff,
+
+                0 0 45px #b000ff;
+
+            margin-bottom: 18px;
+        }
+
+
+        .info p {
+
+            font-size: 19px;
+
+            line-height: 1.7;
+
+            color: #fff0ff;
+
+            font-weight: 700;
+
+            text-shadow:
+                1px 1px 3px #21002e;
+        }
+
+
+        /* =========================
+           POWER BOX
+        ========================= */
+
+        .power {
+
+            margin-top: 25px;
+
+            padding: 18px 20px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.99),
+                    rgba(245,220,255,0.96),
+                    rgba(115,20,180,0.98)
+                );
+
+            border: 2px solid #ffffff;
+
+            border-left: 7px solid #a000dc;
+
+            border-radius: 12px;
+
+            color: #160020;
+
+            font-size: 18px;
+
+            box-shadow:
+
+                0 10px 20px
+                rgba(10,0,35,0.65),
+
+                0 0 20px
+                rgba(210,80,255,0.60);
+        }
+
+
+        .power strong {
+
+            color: #7600a5;
+
+            font-size: 20px;
+
+            text-shadow:
+                0 0 8px
+                rgba(210,80,255,0.75);
+        }
+
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-btn {
+
+            margin-top: 30px;
+
+            padding: 15px 35px;
+
+            border: 3px solid #ffffff;
+
+            border-radius: 35px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #d44cff,
+                    #7200b8,
+                    #100018
+                );
+
+            color: #ffffff;
+
+            font-size: 18px;
+
+            font-weight: 900;
+
+            text-decoration: none;
+
+            box-shadow:
+
+                0 8px 20px
+                rgba(10,0,30,0.80),
+
+                0 0 15px #ffffff,
+
+                0 0 30px
+                rgba(200,0,255,0.70);
+
+            transition: 0.3s ease;
+
+            z-index: 5;
+        }
+
+
+        .back-btn:hover {
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #f1d7ff
+                );
+
+            color: #3b0054;
+
+            border-color: #ffffff;
+
+            transform:
+
+                translateY(-6px)
+                scale(1.05);
+
+            box-shadow:
+
+                0 12px 30px
+                rgba(10,0,30,0.75),
+
+                0 0 25px #ffffff,
+
+                0 0 50px #c000ff;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            .container {
+
+                padding:
+                    35px 15px;
+            }
+
+
+            h1 {
+
+                font-size: 50px;
+
+                letter-spacing: 3px;
+            }
+
+
+            .pounce {
+
+                font-size: 32px;
+            }
+
+
+            .roarr-card {
+
+                flex-direction: column;
+
+                padding:
+                    35px 20px;
+
+                min-height: auto;
+
+                gap: 10px;
+            }
+
+
+            .roarr-image {
+
+                width: 100%;
+
+                min-height: 330px;
+            }
+
+
+            .roarr-image::before {
+
+                width: 250px;
+
+                height: 250px;
+            }
+
+
+            .roarr-image img {
+
+                width: 280px;
+
+                height: 280px;
+            }
+
+
+            .info {
+
+                width: 100%;
+
+                text-align: center;
+
+                padding: 10px;
+            }
+
+
+            .info h2 {
+
+                font-size: 40px;
+            }
+
+
+            .info p {
+
+                font-size: 16px;
+            }
+
+
+            .power {
+
+                text-align: left;
+            }
+
+
+            .circle.one {
+
+                width: 120px;
+
+                height: 120px;
+            }
+
+
+            .circle.two {
+
+                width: 100px;
+
+                height: 100px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- =========================
+             TITLE
+        ========================= -->
+
+        <h1>ROARR</h1>
+
+
+        <p class="subtitle">
+            The Kwami of Exaltation
+        </p>
+
+
+        <!-- =========================
+             CATCHPHRASE
+        ========================= -->
+        <h2 class="pounce">
+            Strips on!
+        </h2>
+        <div class="roarr-card">
+            <div class="circle one"></div>
+            <div class="circle two"></div>
+            <div class="circle three"></div>
+            <div class="circle four"></div>
+            <div class="roarr-image">
+                <img 
+                src="roarr1.png" alt="Roarr"
+                >
+                </div>
+            <div class="info">
+                <h2>ROARR</h2>
+                <p>
+                    Roarr is the kwami associated with the Tiger Miraculous.
+                    Bold, fierce and determined. Roarr represents courage,
+                    strength and the spirit of the wild.
+                </p>
+                <div class="power">
+                    <strong>Power:</strong>
+                    <br>
+                    Clout - grants the holder  incredible destructive strength,
+                            allowing them to unleash a powerful punch.
+                         </div>
+                </div>
+                </div>
+                <a 
+                href="akuma.html"
+                 class="back-btn"
+                 >
+                ← Back to miraculous
+                </a>
+                </div>
+                </body>
+                </html>

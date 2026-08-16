@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Fluff | Burrow On!</title>
+
+    <style>
+
+        /* =========================
+           BASIC RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: #4b2866;
+
+            overflow-x: hidden;
+
+            background:
+
+                radial-gradient(
+                    circle at 8% 15%,
+                    #ffffff 0 55px,
+                    transparent 56px
+                ),
+
+                radial-gradient(
+                    circle at 90% 12%,
+                    #eadcff 0 75px,
+                    transparent 76px
+                ),
+
+                radial-gradient(
+                    circle at 15% 85%,
+                    #ffffff 0 65px,
+                    transparent 66px
+                ),
+
+                radial-gradient(
+                    circle at 85% 85%,
+                    #e3caff 0 50px,
+                    transparent 51px
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #ffffff 0%,
+                    #ffffff 25%,
+                    #f5edff 50%,
+                    #e8d2ff 75%,
+                    #c99aff 100%
+                );
+
+            background-attachment: fixed;
+        }
+
+
+        /* Soft overlay */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+
+                radial-gradient(
+                    circle at center,
+                    transparent 30%,
+                    rgba(110, 60, 150, 0.08) 100%
+                );
+
+            z-index: 0;
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+
+            min-height: 100vh;
+
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 45px 20px;
+
+            position: relative;
+
+            z-index: 1;
+
+            perspective: 1200px;
+        }
+
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        h1 {
+
+            font-size:
+                clamp(50px, 8vw, 95px);
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+
+            letter-spacing: 6px;
+
+            color: #c98cff;
+
+            -webkit-text-stroke: 3px #4b2866;
+
+            text-shadow:
+
+                4px 5px 0 #ffffff,
+
+                0 0 18px
+                rgba(201, 140, 255, 0.75),
+
+                0 0 35px
+                rgba(201, 140, 255, 0.45);
+
+            margin-bottom: 5px;
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           SUBTITLE
+        ========================= */
+
+        .subtitle {
+
+            font-size:
+                clamp(16px, 3vw, 22px);
+
+            color: #4b2866;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            text-shadow:
+                1px 2px 3px rgba(255, 255, 255, 0.9);
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           BURROW ON
+        ========================= */
+
+        .pounce {
+
+            font-size:
+                clamp(32px, 5vw, 58px);
+
+            font-weight: 900;
+
+            font-style: italic;
+
+            text-transform: uppercase;
+
+            letter-spacing: 3px;
+
+            color: #c98cff;
+
+            -webkit-text-stroke: 2px #4b2866;
+
+            text-shadow:
+
+                3px 4px 0 #ffffff,
+
+                0 0 15px
+                rgba(201, 140, 255, 0.85),
+
+                0 0 30px
+                rgba(201, 140, 255, 0.5);
+
+            margin-bottom: 30px;
+
+            transform: rotate(-2deg);
+
+            text-align: center;
+
+            animation:
+                burrowGlow 2s ease-in-out infinite;
+        }
+
+
+        @keyframes burrowGlow {
+
+            0%,
+            100% {
+
+                transform:
+                    rotate(-2deg)
+                    scale(1);
+            }
+
+            50% {
+
+                transform:
+                    rotate(-2deg)
+                    scale(1.05);
+            }
+        }
+
+
+        /* =========================
+           MAIN CARD
+        ========================= */
+
+        .fluff-card {
+
+            position: relative;
+
+            width:
+                min(900px, 94vw);
+
+            min-height: 520px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-around;
+
+            gap: 30px;
+
+            padding: 45px;
+
+            border-radius: 40px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #ffffff 0%,
+                    #ffffff 35%,
+                    #f7efff 65%,
+                    #dfc1ff 100%
+                );
+
+            border: 3px solid #4b2866;
+
+            box-shadow:
+
+                20px 25px 45px
+                rgba(75, 40, 102, 0.25),
+
+                0 0 35px
+                rgba(201, 140, 255, 0.55),
+
+                inset 5px 5px 15px
+                rgba(255, 255, 255, 0.9),
+
+                inset -8px -8px 15px
+                rgba(150, 100, 190, 0.15);
+
+            transform-style: preserve-3d;
+
+            transition: 0.5s ease;
+
+            overflow: hidden;
+        }
+
+
+        .fluff-card:hover {
+
+            transform:
+
+                rotateX(3deg)
+                rotateY(-4deg)
+                translateY(-10px);
+
+            box-shadow:
+
+                25px 35px 60px
+                rgba(75, 40, 102, 0.3),
+
+                0 0 50px
+                rgba(201, 140, 255, 0.75),
+
+                inset 5px 5px 15px
+                rgba(255, 255, 255, 1);
+        }
+
+
+        /* =========================
+           DECORATIVE CIRCLES
+        ========================= */
+
+        .circle {
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            background: #ffffff;
+
+            opacity: 0.95;
+
+            border: 2px solid #eadcff;
+
+            box-shadow:
+
+                inset 5px 5px 15px
+                rgba(255, 255, 255, 0.9),
+
+                0 10px 20px
+                rgba(110, 60, 150, 0.15);
+
+            pointer-events: none;
+        }
+
+
+        .circle.one {
+
+            width: 190px;
+            height: 190px;
+
+            top: -100px;
+            left: -70px;
+        }
+
+
+        .circle.two {
+
+            width: 150px;
+            height: 150px;
+
+            bottom: -75px;
+            right: 30px;
+        }
+
+
+        .circle.three {
+
+            width: 90px;
+            height: 90px;
+
+            top: 35px;
+            right: 70px;
+        }
+
+
+        .circle.four {
+
+            width: 55px;
+            height: 55px;
+
+            bottom: 80px;
+            left: 45%;
+        }
+
+
+        /* =========================
+           FLUFF IMAGE AREA
+        ========================= */
+
+        .fluff-image {
+
+            position: relative;
+
+            width: 48%;
+
+            min-height: 400px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            transform-style: preserve-3d;
+
+            z-index: 3;
+        }
+
+
+        /* Soft white circle behind Fluff */
+
+        .fluff-image::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+
+            height: 320px;
+
+            border-radius: 50%;
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    #ffffff 0%,
+                    #ffffff 55%,
+                    #f1e5ff 100%
+                );
+
+            border: 3px solid #c98cff;
+
+            box-shadow:
+
+                inset 10px 10px 25px
+                rgba(255, 255, 255, 0.9),
+
+                0 15px 35px
+                rgba(75, 40, 102, 0.15),
+
+                0 0 30px
+                rgba(201, 140, 255, 0.6);
+        }
+
+
+        /* =========================
+           FLUFF IMAGE
+        ========================= */
+
+        .fluff-image img {
+
+            position: relative;
+
+            width: 350px;
+
+            height: 350px;
+
+            object-fit: contain;
+
+            z-index: 4;
+
+            transform:
+                translateZ(55px);
+
+            filter:
+
+                drop-shadow(
+                    15px 20px 12px
+                    rgba(75, 40, 102, 0.25)
+                )
+
+                drop-shadow(
+                    0 0 22px
+                    rgba(201, 140, 255, 0.75)
+                );
+
+            animation:
+                fluffFloat 3s ease-in-out infinite;
+
+            transition: 0.4s ease;
+        }
+
+
+        .fluff-card:hover
+        .fluff-image img {
+
+            transform:
+
+                translateZ(75px)
+                scale(1.08);
+
+            filter:
+
+                drop-shadow(
+                    18px 25px 12px
+                    rgba(75, 40, 102, 0.3)
+                )
+
+                drop-shadow(
+                    0 0 35px
+                    rgba(201, 140, 255, 0.95)
+                );
+        }
+
+
+        /* =========================
+           FLOATING ANIMATION
+        ========================= */
+
+        @keyframes fluffFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateZ(55px)
+                    translateY(0);
+            }
+
+            50% {
+
+                transform:
+                    translateZ(70px)
+                    translateY(-12px);
+            }
+        }
+
+
+        /* =========================
+           INFORMATION
+        ========================= */
+
+        .info {
+
+            width: 45%;
+
+            position: relative;
+
+            z-index: 5;
+
+            transform:
+                translateZ(45px);
+
+            padding: 20px;
+        }
+
+
+        .info h2 {
+
+            font-size:
+                clamp(38px, 5vw, 55px);
+
+            color: #c98cff;
+
+            -webkit-text-stroke: 2px #4b2866;
+
+            text-shadow:
+
+                3px 4px 0 #ffffff,
+
+                0 0 15px
+                rgba(201, 140, 255, 0.75);
+
+            margin-bottom: 18px;
+        }
+
+
+        .info p {
+
+            font-size: 19px;
+
+            line-height: 1.7;
+
+            color: #4b2866;
+
+            font-weight: 600;
+
+            text-shadow:
+                1px 1px 2px #ffffff;
+        }
+
+
+        /* =========================
+           POWER BOX
+        ========================= */
+
+        .power {
+
+            margin-top: 25px;
+
+            padding: 18px 20px;
+
+            background:
+                rgba(255, 255, 255, 0.85);
+
+            border: 2px solid #c98cff;
+
+            border-left: 7px solid #c98cff;
+
+            border-radius: 12px;
+
+            color: #4b2866;
+
+            font-size: 18px;
+
+            box-shadow:
+
+                0 10px 20px
+                rgba(75, 40, 102, 0.15);
+        }
+
+
+        .power strong {
+
+            color: #a45ee0;
+
+            font-size: 20px;
+        }
+
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-btn {
+
+            margin-top: 30px;
+
+            padding: 15px 35px;
+
+            border: 3px solid #4b2866;
+
+            border-radius: 35px;
+
+            background: #c98cff;
+
+            color: #4b2866;
+
+            font-size: 18px;
+
+            font-weight: 900;
+
+            text-decoration: none;
+
+            box-shadow:
+
+                0 8px 20px
+                rgba(75, 40, 102, 0.2),
+
+                0 0 20px
+                rgba(201, 140, 255, 0.45);
+
+            transition: 0.3s ease;
+
+            z-index: 5;
+        }
+
+
+        .back-btn:hover {
+
+            background: #ffffff;
+
+            color: #a45ee0;
+
+            border-color: #a45ee0;
+
+            transform:
+
+                translateY(-6px)
+                scale(1.05);
+
+            box-shadow:
+
+                0 12px 30px
+                rgba(75, 40, 102, 0.25),
+
+                0 0 25px
+                rgba(201, 140, 255, 0.7);
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            .container {
+
+                padding:
+                    35px 15px;
+            }
+
+
+            h1 {
+
+                font-size: 50px;
+            }
+
+
+            .pounce {
+
+                font-size: 32px;
+            }
+
+
+            .fluff-card {
+
+                flex-direction: column;
+
+                padding:
+                    35px 20px;
+
+                min-height: auto;
+
+                gap: 10px;
+            }
+
+
+            .fluff-image {
+
+                width: 100%;
+
+                min-height: 330px;
+            }
+
+
+            .fluff-image::before {
+
+                width: 250px;
+
+                height: 250px;
+            }
+
+
+            .fluff-image img {
+
+                width: 280px;
+
+                height: 280px;
+            }
+
+
+            .info {
+
+                width: 100%;
+
+                text-align: center;
+
+                padding: 10px;
+            }
+
+
+            .info h2 {
+
+                font-size: 40px;
+            }
+
+
+            .info p {
+
+                font-size: 16px;
+            }
+
+
+            .power {
+
+                text-align: left;
+            }
+
+
+            .circle.one {
+
+                width: 120px;
+
+                height: 120px;
+            }
+
+
+            .circle.two {
+
+                width: 100px;
+
+                height: 100px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- TITLE -->
+
+        <h1>FLUFF</h1>
+
+
+        <p class="subtitle">
+            The Kwami of Evolution
+        </p>
+
+
+        <!-- CATCHPHRASE -->
+
+        <h2 class="pounce">
+            CLOCKWISE!
+        </h2>
+
+
+        <!-- MAIN CARD -->
+
+        <div class="fluff-card">
+
+
+            <!-- Decorative circles -->
+
+            <div class="circle one"></div>
+
+            <div class="circle two"></div>
+
+            <div class="circle three"></div>
+
+            <div class="circle four"></div>
+
+
+            <!-- FLUFF IMAGE -->
+
+            <div class="fluff-image">
+
+                <img
+                    src="fluff1.png"
+                    alt="Fluff"
+                >
+
+            </div>
+
+
+            <!-- INFORMATION -->
+
+            <div class="info">
+
+                <h2>FLUFF</h2>
+
+                <p>
+
+                    Fluff is the kwami associated
+                    with the Rabbit Miraculous.
+                    She represents evolution,
+                    time and possibilities.
+
+                </p>
+
+
+                <div class="power">
+
+                    <strong>POWER:</strong>
+
+                    <br>
+
+                    Burrow — allows the holder
+                    to travel through time and
+                    explore different moments.
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- BACK BUTTON -->
+
+        <a
+            href="akuma.html"
+            class="back-btn"
+        >
+            ← BACK TO MIRACULOUS
+        </a>
+
+
+    </div>
+
+
+</body>
+
+</html>
